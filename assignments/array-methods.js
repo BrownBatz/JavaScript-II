@@ -105,7 +105,7 @@ let ticketPriceTotal = 0;
 
 // Function that gets and adds the donation
 function addDonations(total, value){
-  return total += Number(value.donation);
+  return total += Number(value.donation); // * I absolutely could not get this to work * //
 }
 
 ticketPriceTotal = runners.reduce(addDonations); // Counts donations
@@ -116,7 +116,51 @@ console.log(ticketPriceTotal); // Displays total of donations
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+// HR Needs to send out a newsletter to all of the contestants informing them of the trail and rules before the race starts. The emails need to quickly be extrated and presented to HR.
+
+let emails = [];
+
+function extractEmails(object){
+  return object.email;
+}
+
+emails = runners.map(extractEmails);
+
+console.log(emails);
 
 // Problem 2
+// Unfortunately, there was an issue with the budget. In order to afford the complimentary water we need to use $2 out of each of the runners donations. If they cannot afford it, don't worry about it.
+
+function takeMoney(object){
+  object.donation -= 2;
+}
+
+runners.forEach(takeMoney);
+
+console.log(runners.donation);
 
 // Problem 3
+// Due to the large amount of runners we have this year, we need to have two seperate run times so as to not over crowd the track. Seperate the even and the odd id numbers in to two race categories.
+let oddRunners = [];
+let evenRunners = [];
+
+// Define the filter callback function
+function oddFilter(object){
+  if (object.id % 2 != 0){
+    return object;
+  }
+}
+
+function evenFilter(object){
+  if (object.id % 2 === 0){
+    return object;
+  }
+}
+
+// run filter functions to filter either odd or even
+oddRunners = runners.filter(oddFilter);
+evenRunners = runners.filter(evenFilter);
+
+// Display results
+console.log(oddRunners[2].id + " " + oddRunners[1].id);
+console.log(evenRunners[2].id + " " + evenRunners[1].id);
