@@ -38,27 +38,88 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
   console.log(test2); // "this Pencil is worth a million dollars!"
 */
 
-
+// Start length problem
 function getLength(arr, cb) {
   // getLength passes the length of the array into the callback.
+  cb(arr.length);
 }
 
+function stateLength(length){
+  console.log(length);
+}
+
+getLength(items, stateLength);
+// End Length Problem
+
+// Begin last item problem
 function last(arr, cb) {
   // last passes the last item of the array into the callback.
+  cb(arr[(arr.length - 1)]);
 }
 
+function stateLast(lastItem){
+  console.log(lastItem);
+}
+
+last(items, stateLast);
+// End Last Item Problem
+
+// Begin add numbers problem
 function sumNums(x, y, cb) {
   // sumNums adds two numbers (x, y) and passes the result to the callback.
+  const sum = x + y;
+  cb(sum);
 }
 
+function stateSum(sum){
+  console.log(sum);
+}
+
+sumNums(5, 10, stateSum);
+
+// End add numbers problem
+
+
+// Begin Multiply numbers problem
 function multiplyNums(x, y, cb) {
   // multiplyNums multiplies two numbers and passes the result to the callback.
+  const product = x * y;
+  cb(product);
 }
 
+function stateProduct(product){
+  console.log(product);
+}
+
+multiplyNums(5, 5, stateProduct);
+
+
+// End multiply numbers problem
+
+
+// Begin contains problem
 function contains(item, list, cb) {
   // contains checks if an item is present inside of the given array/list.
   // Pass true to the callback if it is, otherwise pass false.
+  for (let i = 0; i < list.length; i++){
+    if (list[i] === item){
+      cb(true);
+      return true;
+    }
+  }
+  cb(false);
+  return false;
 }
+
+function stateResults(result){
+  console.log(result);
+}
+
+contains("Gum", items, stateResults);
+contains("Colored Pencils", items, stateResults);
+
+
+// End contains problem
 
 /* STRETCH PROBLEM */
 
